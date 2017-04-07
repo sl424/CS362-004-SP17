@@ -1,1 +1,1 @@
-Chewie (shuiqiang) Lin
+This is my assignment-1 submission

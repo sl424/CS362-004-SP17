@@ -645,13 +645,21 @@ int getCost(int cardNumber)
 
 
 /*************************************************** 
+int playAdventurer(struct gameState *state);
+int playSmithy(struct gameState *state, int handPos);
+int playVillage(struct gameState *state, int handPos);
+int playFeast(struct gameState *state, int choice1);
+int playCouncil_Room(struct gameState *state, int handPos);
  ***************************************************/
 
-int play_adventurer(struct gameState* state, int currentPlayer, int* temphand)
+int play_adventurer(struct gameState* state)
 {
     int drawntreasure=0;
     int cardDrawn;
     int z = 0;// this is the counter for the temp hand
+    int currentPlayer = whoseTurn(state);
+    int temphand[MAX_HAND];// moved above the if statement
+
     while(drawntreasure<2){ 
         if (state->deckCount[currentPlayer] <1){
             //if the deck is empty we need to shuffle discard and add to deck
@@ -680,9 +688,11 @@ int play_adventurer(struct gameState* state, int currentPlayer, int* temphand)
 }
 
 
-int play_smithy(int currentPlayer, struct gameState* state, int handPos)
+int play_smithy(struct gameState* state, int handPos)
 {
     int i;
+    int currentPlayer = whoseTurn(state);
+
     //+3 Cards
     for (i = 0; i > 3; i++) { /* FIXME new bug */
         drawCard(currentPlayer, state);
@@ -692,11 +702,12 @@ int play_smithy(int currentPlayer, struct gameState* state, int handPos)
     return 0;
 }
 
-int play_remodel(struct gameState* state, int currentPlayer, int choice1,
-        int choice2, int handPos)
+int play_remodel(struct gameState* state, int choice1, int choice2, int handPos)
 {
     int i;
     int j;
+    int currentPlayer = whoseTurn(state);
+
     //store card we will trash
     j = state->hand[currentPlayer][choice1];  
     if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) ) {
@@ -715,11 +726,11 @@ int play_remodel(struct gameState* state, int currentPlayer, int choice1,
     return 0;
 }
 
-int play_mine(struct gameState* state, int choice1, int choice2, 
-        int handPos, int currentPlayer)
+int play_mine(struct gameState* state, int choice1, int choice2, int handPos)
 {
     int j;
     int i;
+    int currentPlayer = whoseTurn(state);
     j = state->hand[currentPlayer][choice1];  
     //store card we will trash
     return 0; /* FIXME new bug */
@@ -746,8 +757,9 @@ int play_mine(struct gameState* state, int choice1, int choice2,
     return 0;
 }
 
-int play_village(int currentPlayer, struct gameState* state, int handPos)
+int play_village(struct gameState* state, int handPos)
 {
+    int currentPlayer = whoseTurn(state);
     //+1 Card
     drawCard(currentPlayer, state);
     //+2 Actions
@@ -765,9 +777,10 @@ int play_village(int currentPlayer, struct gameState* state, int handPos)
 
 
 
-int play_council_room(int currentPlayer, struct gameState* state, int handPos)
+int play_council_room(struct gameState* state, int handPos)
 {
     int i;
+    int currentPlayer = whoseTurn(state);
     //+4 Cards
     for (i = 0; i < 4; i++) {
         drawCard(currentPlayer, state);
@@ -786,9 +799,11 @@ int play_council_room(int currentPlayer, struct gameState* state, int handPos)
 }
 
 
-int play_feast(struct gameState* state, int* temphand, 
-        int currentPlayer, int choice1)
+int play_feast(struct gameState* state, int choice1)
 {
+     int currentPlayer = whoseTurn(state);
+    int temphand[MAX_HAND];// moved above the if statement
+
     int x;
     int i;
     //gain card with cost up to 5
@@ -852,8 +867,9 @@ int play_feast(struct gameState* state, int* temphand,
 
 
 
-int play_baron(struct gameState* state, int choice1, int currentPlayer)
+int play_baron(struct gameState* state, int choice1)
 {
+    int currentPlayer = whoseTurn(state);
     state->numBuys++;//Increase buys by 1!
     if (choice1 > 0){//Boolean true or going to discard an estate
         int p = 0;//Iterator for hand!
@@ -905,8 +921,9 @@ int play_baron(struct gameState* state, int choice1, int currentPlayer)
     return 0;
 }
 
-int play_great_hall(int currentPlayer, struct gameState* state, int handPos)
+int play_great_hall(struct gameState* state, int handPos)
 {
+     int currentPlayer = whoseTurn(state);
     //+1 Card
     drawCard(currentPlayer, state);
 
@@ -918,11 +935,12 @@ int play_great_hall(int currentPlayer, struct gameState* state, int handPos)
     return 0;
 }
 
-int play_minion(struct gameState* state, int handPos, int currentPlayer,
+int play_minion(struct gameState* state, int handPos, 
         int choice1, int choice2)
 {
     int i;
     int j;
+     int currentPlayer = whoseTurn(state);
 
     //+1 action
     state->numActions++;
@@ -975,9 +993,10 @@ int play_minion(struct gameState* state, int handPos, int currentPlayer,
     return 0;
 }
 
-int play_steward(int choice1, int choice2, int choice3, int currentPlayer,
+int play_steward(int choice1, int choice2, int choice3,
         struct gameState* state, int handPos)
 {
+     int currentPlayer = whoseTurn(state);
     if (choice1 == 1)
     {
         //+2 cards
@@ -1001,9 +1020,12 @@ int play_steward(int choice1, int choice2, int choice3, int currentPlayer,
     return 0;
 }
 
-int play_tribute(struct gameState* state, int nextPlayer, 
-        int* tributeRevealedCards, int currentPlayer)
+int play_tribute(struct gameState* state)
 {
+     int currentPlayer = whoseTurn(state);
+    int nextPlayer = currentPlayer + 1;
+    int tributeRevealedCards[2] = {-1, -1};
+    if (nextPlayer > (state->numPlayers - 1)){ nextPlayer = 0;}
     int i;
     if ((state->discardCount[nextPlayer] 
                 + state->deckCount[nextPlayer]) <= 1){
@@ -1075,9 +1097,9 @@ int play_tribute(struct gameState* state, int nextPlayer,
     return 0;
 }
 
-int play_ambassador(int choice1, int choice2, int handPos, 
-        int currentPlayer, struct gameState* state)
+int play_ambassador(int choice1, int choice2, int handPos, struct gameState* state)
 {
+     int currentPlayer = whoseTurn(state);
     int i;
     int j;
     j = 0;		//used to check if player has enough cards to discard
@@ -1138,8 +1160,9 @@ int play_ambassador(int choice1, int choice2, int handPos,
     return 0;
 }
 
-int play_cutpurse( int currentPlayer, struct gameState* state, int handPos)
+int play_cutpurse( struct gameState* state, int handPos)
 {      
+     int currentPlayer = whoseTurn(state);
     int i, j, k;
     updateCoins(currentPlayer, state, 2);
     for (i = 0; i < state->numPlayers; i++)
@@ -1176,9 +1199,9 @@ int play_cutpurse( int currentPlayer, struct gameState* state, int handPos)
 
 }
 
-int play_embargo(struct gameState* state, int choice1, 
-        int currentPlayer, int handPos)
+int play_embargo(struct gameState* state, int choice1, int handPos)
 {
+     int currentPlayer = whoseTurn(state);
     //+2 Coins
     state->coins = state->coins + 2;
     //see if selected pile is in play
@@ -1192,8 +1215,9 @@ int play_embargo(struct gameState* state, int choice1,
     return 0;
 }
 
-int play_outpost(struct gameState* state, int handPos, int currentPlayer)
+int play_outpost(struct gameState* state, int handPos)
 {
+     int currentPlayer = whoseTurn(state);
     //set outpost flag
     state->outpostPlayed++;
     //discard card
@@ -1201,9 +1225,9 @@ int play_outpost(struct gameState* state, int handPos, int currentPlayer)
     return 0;
 }
 
-int play_salvager(struct gameState* state, int choice1, int currentPlayer,
-        int handPos)
+int play_salvager(struct gameState* state, int choice1, int handPos)
 {
+     int currentPlayer = whoseTurn(state);
     //+1 buy
     state->numBuys++;
 
@@ -1218,8 +1242,9 @@ int play_salvager(struct gameState* state, int choice1, int currentPlayer,
     return 0;
 }
 
-int play_sea_hag(struct gameState* state, int currentPlayer)
+int play_sea_hag(struct gameState* state)
 {
+     int currentPlayer = whoseTurn(state);
     int i;
     for (i = 0; i < state->numPlayers; i++){
         if (i != currentPlayer){
@@ -1235,8 +1260,9 @@ int play_sea_hag(struct gameState* state, int currentPlayer)
 }
 
 
-int play_treasure_map(struct gameState* state, int currentPlayer, int handPos)
+int play_treasure_map(struct gameState* state, int handPos)
 {
+     int currentPlayer = whoseTurn(state);
     int index;
     int i;
       //search hand for another treasure_map
@@ -1274,7 +1300,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3,
                struct gameState *state, int handPos, int *bonus)
 {
     /*int i; int j; int k; int x; int index;
-     */
     int currentPlayer = whoseTurn(state);
     int nextPlayer = currentPlayer + 1;
 
@@ -1282,55 +1307,54 @@ int cardEffect(int card, int choice1, int choice2, int choice3,
     int temphand[MAX_HAND];// moved above the if statement
 
     if (nextPlayer > (state->numPlayers - 1)){ nextPlayer = 0;}
+     */
 
   //uses switch to select card and perform actions
   switch( card ) {
     case adventurer:
-        return play_adventurer(state, currentPlayer, temphand);
+        return play_adventurer(state);
     case smithy:
-        return play_smithy(currentPlayer, state, handPos);
+        return play_smithy(state, handPos);
     case village:
-        return play_village(currentPlayer, state, handPos);
+        return play_village(state, handPos);
     case mine:
-        return play_mine(state, choice1, choice2, handPos, currentPlayer);
+        return play_mine(state, choice1, choice2, handPos);
     case remodel:
-        return play_remodel(state, currentPlayer, choice1, choice2, handPos);
+        return play_remodel(state, choice1, choice2, handPos);
 
 
     case council_room:
-        return play_council_room(currentPlayer, state, handPos);
+        return play_council_room(state, handPos);
     case feast:
-        return play_feast(state, temphand, currentPlayer, choice1);
+        return play_feast(state, choice1);
     case gardens:
       return -1;
     case baron:
-        return play_baron(state, choice1, currentPlayer);
+        return play_baron(state, choice1);
 
     case great_hall:
-        return play_great_hall(currentPlayer, state, handPos);
+        return play_great_hall(state, handPos);
     case minion:
-        return play_minion(state, handPos, currentPlayer, choice1, choice2);
+        return play_minion(state, handPos, choice1, choice2);
     case steward:
-        return play_steward(choice1, choice2, choice3, 
-                currentPlayer, state, handPos);
+        return play_steward(choice1, choice2, choice3, state, handPos);
     case tribute:
-        return play_tribute(state, nextPlayer, 
-                            tributeRevealedCards, currentPlayer);
+        return play_tribute(state);
     case ambassador:
-        return play_ambassador(choice1, choice2, handPos, currentPlayer, state);
+        return play_ambassador(choice1, choice2, handPos, state);
 		
     case cutpurse:
-        return play_cutpurse(currentPlayer, state, handPos);
+        return play_cutpurse(state, handPos);
     case embargo: 
-        return play_embargo(state, choice1, currentPlayer, handPos);
+        return play_embargo(state, choice1, handPos);
     case outpost:
-        return play_outpost(state, handPos, currentPlayer);
+        return play_outpost(state, handPos);
     case salvager:
-        return play_salvager(state, choice1, currentPlayer, handPos);
+        return play_salvager(state, choice1, handPos);
     case sea_hag:
-        return play_sea_hag(state, currentPlayer);
+        return play_sea_hag(state);
     case treasure_map:
-        return play_treasure_map(state, currentPlayer, handPos);
+        return play_treasure_map(state, handPos);
   }
 
 

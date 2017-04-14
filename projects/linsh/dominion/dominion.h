@@ -130,11 +130,38 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+/*
 int playAdventurer(struct gameState *state);
 int playSmithy(struct gameState *state, int handPos);
 int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
+*/
+
+int play_adventurer(struct gameState* state);
+int play_smithy(struct gameState* state, int handPos);
+int play_village(struct gameState* state, int handPos);
+int play_mine(struct gameState* state, int choice1, int choice2, int handPos);
+int play_remodel(struct gameState* state, int choice1, int choice2, int handPos);
+
+
+int play_council_room(struct gameState* state, int handPos);
+int play_feast(struct gameState* state, int choice1);
+int play_baron(struct gameState* state, int choice1);
+
+int play_great_hall(struct gameState* state, int handPos);
+int play_minion(struct gameState* state, int handPos, int choice1, int choice2);
+int play_steward(int choice1, int choice2, int choice3, struct gameState* state, int handPos);
+int play_tribute(struct gameState* state);
+int play_ambassador(int choice1, int choice2, int handPos, struct gameState* state);
+
+int play_cutpurse(struct gameState* state, int handPos);
+int play_embargo(struct gameState* state, int choice1, int handPos);
+int play_outpost(struct gameState* state, int handPos);
+int play_salvager(struct gameState* state, int choice1, int handPos);
+int play_sea_hag(struct gameState* state);
+int play_treasure_map(struct gameState* state, int handPos);
+
 
 
 #endif

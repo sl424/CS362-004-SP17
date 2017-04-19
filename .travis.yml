@@ -16,6 +16,9 @@ branches:
           travis-branch
 notifications:
   email: false
+  irc:
+    channels:
+    - chat.freenode.net#chewie-test
 
 env:
   global:

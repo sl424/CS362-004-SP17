@@ -83,10 +83,31 @@ unittestresults.out: cardtest1.c cardtest2.c cardtest3.c cardtest4.c unittest1.c
 	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
 	./cardtest4 >> unittestresults.out 
 	gcov cardtest4.c >> unittestresults.out
+
+randomtestcard: randomtestadventurer.c randomtestcard1.c dominion.o rngs.o
+
+	echo "Result for running randomtestcard1:" >> randomtestcard1.out
+	echo "randomtestcard1.c:" >> randomtestcard1.out 
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard1 >> randomtestcard1.out 
+	gcov randomtestcard1.c >> randomtestcard1.out
+
+	echo "Result for running randomtestcard2:" >> randomtestcard2.out
+	echo "randomtestcard2.c:" >> randomtestcard2.out 
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2 >> randomtestcard2.out 
+	gcov randomtestcard2.c >> randomtestcard2.out
+
+	echo "Result for running randomtestadventurer:" >> randomtestadventurer.out
+	echo "randomtestadventurer.c:" >> randomtestadventurer.out 
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out 
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittestresults.out unittest1 
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so  *.out unittestresults.out unittest1 

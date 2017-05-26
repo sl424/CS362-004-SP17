@@ -1,0 +1,8 @@
+set logging on
+break /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1.c:60
+  commands
+    watch testG.handCount[thisPlayer]
+    watch testG.hand[thisPlayer]
+  end
+break cardEffect
+break play_smithy

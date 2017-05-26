@@ -694,7 +694,7 @@ int play_smithy(struct gameState* state, int handPos)
     int currentPlayer = whoseTurn(state);
 
     //+3 Cards
-    for (i = 0; i > 3; i++) { /* FIXME new bug */
+    for (i = 0; i < 3; i++) { /* FIXME new bug */
         drawCard(currentPlayer, state);
     }
     //discard card from hand

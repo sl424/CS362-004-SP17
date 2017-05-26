@@ -1,0 +1,9 @@
+----------------- Testing Card: smithy ----------------
+draw 3 cards
+hand count = 4, expected = 7... Error
+deck count = 5, expected = 2... Error
+smithy played: card = 4, NOT = 13... OK
+Failed 2 tests
+File 'cardtest1.c'
+Lines executed:97.62% of 42
+Creating 'cardtest1.c.gcov'

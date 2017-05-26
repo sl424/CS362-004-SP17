@@ -1,0 +1,72 @@
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+(gdb) c
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {-1, 4, 1, 4, 4, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1380
+1380	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+(gdb) c
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {-1, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {4, 4, 1, 4, 4, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1395
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+(gdb) c
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {4, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {4, 4, 1, 4, -1, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+(gdb) c
+Continuing.
+
+Hardware watchpoint 6: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 4
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+689	
+690	
+691	int play_smithy(struct gameState* state, int handPos)
+692	{
+693	    int i;
+694	    int currentPlayer = whoseTurn(state);
+695	
+696	    //+3 Cards
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+698	        drawCard(currentPlayer, state);
+Hardware watchpoint 13: i
+whoseTurn (state=0x7fffffff0ff0) at dominion.c:347
+347	  return state->whoseTurn;
+348	}
+play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+
+Hardware watchpoint 13: i
+
+Old value = 32767
+New value = 0
+0x000000000040399b in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+701	    discardCard(handPos, currentPlayer, state, 0);
+Continuing.
+

@@ -1,0 +1,50 @@
+function play_adventurer called 10 returned 100% blocks executed 100%
+       10:  655:int play_adventurer(struct gameState* state)
+        -:  656:{
+       10:  657:    int drawntreasure=0;
+        -:  658:    int cardDrawn;
+       10:  659:    int z = 0;// this is the counter for the temp hand
+       10:  660:    int currentPlayer = whoseTurn(state);
+call    0 returned 100%
+        -:  661:    int temphand[MAX_HAND];// moved above the if statement
+        -:  662:
+       86:  663:    while(drawntreasure<2){ 
+branch  0 taken 87%
+branch  1 taken 13% (fallthrough)
+       66:  664:        if (state->deckCount[currentPlayer] <1){
+branch  0 taken 29% (fallthrough)
+branch  1 taken 71%
+        -:  665:            //if the deck is empty we need to shuffle discard and add to deck
+       19:  666:            shuffle(currentPlayer, state);
+call    0 returned 100%
+        -:  667:        }
+       66:  668:        drawCard(currentPlayer, state);
+call    0 returned 100%
+       66:  669:        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
+        -:  670:        //top card of hand is most recently drawn card.
+       66:  671:        if (cardDrawn == copper || cardDrawn == silver ){
+branch  0 taken 80% (fallthrough)
+branch  1 taken 20%
+branch  2 taken 13% (fallthrough)
+branch  3 taken 87%
+        -:  672:            /* FIXME new bug */
+       20:  673:            drawntreasure++;
+        -:  674:        }else{
+       46:  675:            temphand[z]=cardDrawn;
+       46:  676:            state->handCount[currentPlayer]--; 
+        -:  677:            //this should just remove the top card (the most recently drawn one).
+       46:  678:            z++;
+        -:  679:        }
+        -:  680:    }
+       66:  681:    while(z-1>=0){
+branch  0 taken 82%
+branch  1 taken 18% (fallthrough)
+       46:  682:        state->discard[currentPlayer][state->discardCount[currentPlayer]++]
+       46:  683:            =temphand[z-1]; 
+        -:  684:        // discard all cards in play that have been drawn
+       46:  685:        z=z-1;
+        -:  686:    }
+       10:  687:    return 0;
+        -:  688:}
+        -:  689:
+        -:  690:

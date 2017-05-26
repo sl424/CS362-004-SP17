@@ -1,0 +1,4 @@
+     if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+    {
+      return -1;
+    }

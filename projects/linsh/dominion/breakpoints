@@ -1,0 +1,2 @@
+set logging on
+break cardEffect

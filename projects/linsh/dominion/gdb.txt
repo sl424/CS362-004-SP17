@@ -1,0 +1,1089 @@
+Breakpoint 1 at 0x405cb3: file dominion.c, line 1313.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+No symbol "G" in current context.
+No symbol "testG" in current context.
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+0x7fffffff0ff0:	0x00000002
+1308	
+1309	    if (nextPlayer > (state->numPlayers - 1)){ nextPlayer = 0;}
+1310	     */
+1311	
+1312	  //uses switch to select card and perform actions
+1313	  switch( card ) {
+1314	    case adventurer:
+1315	        return play_adventurer(state);
+1316	    case smithy:
+1317	        return play_smithy(state, handPos);
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+Hardware watchpoint 2: testG.handCount[thisPlayer]
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+1308	
+1309	    if (nextPlayer > (state->numPlayers - 1)){ nextPlayer = 0;}
+1310	     */
+1311	
+1312	  //uses switch to select card and perform actions
+1313	  switch( card ) {
+1314	    case adventurer:
+1315	        return play_adventurer(state);
+1316	    case smithy:
+1317	        return play_smithy(state, handPos);
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+$1 = 5
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+No symbol "testG" in current context.
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+$2 = {{13, 4, 1, 4, 4, 0 <repeats 495 times>}, {0 <repeats 500 times>}, {
+    0 <repeats 500 times>}, {0 <repeats 500 times>}}
+$3 = {{1, 1, 4, 4, 4, 4, 4, 1, 4, 4, 0 <repeats 490 times>}, {4, 4, 1, 4, 4, 4, 4, 1, 1, 4, 
+    0 <repeats 490 times>}, {0 <repeats 500 times>}, {0 <repeats 500 times>}}
+$4 =   {    {1,
+    1,
+    4,
+    4,
+    4,
+    4,
+    4,
+    1,
+    4,
+    4,
+    0 <repeats 490 times>},
+      {4,
+    4,
+    1,
+    4,
+    4,
+    4,
+    4,
+    1,
+    1,
+    4,
+    0 <repeats 490 times>},
+      {0 <repeats 500 times>},
+      {0 <repeats 500 times>}}
+$5 =   {1,
+  1,
+  4,
+  4,
+  4,
+  4,
+  4,
+  1,
+  4,
+  4,
+  0 <repeats 490 times>}
+Argument required (file name in which to save)
+Saved to file 'bk'.
+$6 =   {13,
+  4,
+  1,
+  4,
+  4,
+  0 <repeats 495 times>}
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+56	    discarded = 1;
+57		xtraCoins = 0;
+58	
+59		// copy the game state to a test case
+60		memcpy(&testG, &G, sizeof(struct gameState));
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+62	
+63		printf("hand count = %d, expected = %d", 
+64	            testG.handCount[thisPlayer], 
+65	            G.handCount[thisPlayer] + newCards - discarded);
+Initial frame selected; you cannot go up.
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+1308	
+1309	    if (nextPlayer > (state->numPlayers - 1)){ nextPlayer = 0;}
+1310	     */
+1311	
+1312	  //uses switch to select card and perform actions
+1313	  switch( card ) {
+1314	    case adventurer:
+1315	        return play_adventurer(state);
+1316	    case smithy:
+1317	        return play_smithy(state, handPos);
+Breakpoint 3 at 0x403985: file dominion.c, line 694.
+1317	        return play_smithy(state, handPos);
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+689	
+690	
+691	int play_smithy(struct gameState* state, int handPos)
+692	{
+693	    int i;
+694	    int currentPlayer = whoseTurn(state);
+695	
+696	    //+3 Cards
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+698	        drawCard(currentPlayer, state);
+#0  play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+#0  play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+#1  0x0000000000405d3d in cardEffect (card=13, choice1=1, choice2=0, choice3=0, 
+    state=0x7fffffff0ff0, handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1317
+#2  0x00000000004010e0 in main () at cardtest1.c:61
+#1  0x0000000000405d3d in cardEffect (card=13, choice1=1, choice2=0, choice3=0, 
+    state=0x7fffffff0ff0, handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1317
+1317	        return play_smithy(state, handPos);
+1312	  //uses switch to select card and perform actions
+1313	  switch( card ) {
+1314	    case adventurer:
+1315	        return play_adventurer(state);
+1316	    case smithy:
+1317	        return play_smithy(state, handPos);
+1318	    case village:
+1319	        return play_village(state, handPos);
+1320	    case mine:
+1321	        return play_mine(state, choice1, choice2, handPos);
+#2  0x00000000004010e0 in main () at cardtest1.c:61
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+56	    discarded = 1;
+57		xtraCoins = 0;
+58	
+59		// copy the game state to a test case
+60		memcpy(&testG, &G, sizeof(struct gameState));
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+62	
+63		printf("hand count = %d, expected = %d", 
+64	            testG.handCount[thisPlayer], 
+65	            G.handCount[thisPlayer] + newCards - discarded);
+Breakpoint 4 at 0x40110d: file cardtest1.c, line 63.
+Continuing.
+
+Hardware watchpoint 2: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 4
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+No symbol "testG" in current context.
+1392	      //replace discarded card with last card in hand
+1393	      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+1394	      //set last card to -1
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+1396	      //reduce number of cards in hand
+1397	      state->handCount[currentPlayer]--;
+1398	    }
+1399		
+1400	  return 0;
+1401	}
+Continuing.
+
+Breakpoint 4, main () at cardtest1.c:63
+63		printf("hand count = %d, expected = %d", 
+$7 =   {4,
+  4,
+  1,
+  4,
+  -1,
+  0 <repeats 495 times>}
+$8 =   {1,
+  1,
+  4,
+  4,
+  4,
+  4,
+  4,
+  1,
+  4,
+  4,
+  0 <repeats 490 times>}
+Hardware watchpoint 5: testG.deckCount[thisPlayer]
+Continuing.
+
+Watchpoint 2 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 5 deleted because the program has left the block in
+which its expression is valid.
+0x00007ffff7743511 in __libc_start_main () from /usr/lib/libc.so.6
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+689	
+690	
+691	int play_smithy(struct gameState* state, int handPos)
+692	{
+693	    int i;
+694	    int currentPlayer = whoseTurn(state);
+695	
+696	    //+3 Cards
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+698	        drawCard(currentPlayer, state);
+whoseTurn (state=0x7fffffff0ff0) at dominion.c:347
+347	  return state->whoseTurn;
+342	
+343	  return count;
+344	}
+345	
+346	int whoseTurn(struct gameState *state) {
+347	  return state->whoseTurn;
+348	}
+349	
+350	int endTurn(struct gameState *state) {
+351	  int k;
+348	}
+play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+692	{
+693	    int i;
+694	    int currentPlayer = whoseTurn(state);
+695	
+696	    //+3 Cards
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+698	        drawCard(currentPlayer, state);
+699	    }
+700	    //discard card from hand
+701	    discardCard(handPos, currentPlayer, state, 0);
+701	    discardCard(handPos, currentPlayer, state, 0);
+702	    return 0;
+703	}
+cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1362
+1362	}
+1357	        return play_treasure_map(state, handPos);
+1358	  }
+1359	
+1360	
+1361	  return -1;
+1362	}
+1363	
+1364	
+1365	int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+1366	{
+main () at cardtest1.c:65
+65	            G.handCount[thisPlayer] + newCards - discarded);
+60		memcpy(&testG, &G, sizeof(struct gameState));
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+62	
+63		printf("hand count = %d, expected = %d", 
+64	            testG.handCount[thisPlayer], 
+65	            G.handCount[thisPlayer] + newCards - discarded);
+66		perror(testG.handCount[thisPlayer] 
+67	            == G.handCount[thisPlayer] + newCards - discarded);
+68	
+69		printf("deck count = %d, expected = %d", 
+$9 =   {1,
+  1,
+  4,
+  4,
+  4,
+  4,
+  4,
+  1,
+  4,
+  4,
+  0 <repeats 490 times>}
+$10 =   {4,
+  4,
+  1,
+  4,
+  -1,
+  0 <repeats 495 times>}
+Continuing.
+
+Breakpoint 4, main () at cardtest1.c:63
+63		printf("hand count = %d, expected = %d", 
+Program not restarted.
+Continuing.
+[Inferior 1 (process 8134) exited normally]
+Breakpoint 6 at 0x4030a4: file dominion.c, line 528.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 6, drawCard (player=0, state=0x7fffffff76b0) at dominion.c:528
+528	  if (state->deckCount[player] <= 0){//Deck is empty
+523	}
+524	
+525	int drawCard(int player, struct gameState *state)
+526	{	int count;
+527	  int deckCounter;
+528	  if (state->deckCount[player] <= 0){//Deck is empty
+529	    
+530	    //Step 1 Shuffle the discard pile back into a deck
+531	    int i;
+532	    //Move discard to deck
+Continuing.
+
+Breakpoint 6, drawCard (player=0, state=0x7fffffff76b0) at dominion.c:528
+528	  if (state->deckCount[player] <= 0){//Deck is empty
+Continuing.
+
+Breakpoint 6, drawCard (player=0, state=0x7fffffff76b0) at dominion.c:528
+528	  if (state->deckCount[player] <= 0){//Deck is empty
+Continuing.
+
+Breakpoint 6, drawCard (player=0, state=0x7fffffff76b0) at dominion.c:528
+528	  if (state->deckCount[player] <= 0){//Deck is empty
+Continuing.
+
+Breakpoint 6, drawCard (player=0, state=0x7fffffff76b0) at dominion.c:528
+528	  if (state->deckCount[player] <= 0){//Deck is empty
+Continuing.
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+No symbol "testG" in current context.
+#0  cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, handPos=0, 
+    bonus=0x7fffffffdd6c) at dominion.c:1313
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+Bottom (innermost) frame selected; you cannot go down.
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+Hardware watchpoint 7: testG.handCount[thisPlayer]
+Hardware watchpoint 8: testG.deckCount[thisPlayer]
+Program not restarted.
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Continuing.
+
+Hardware watchpoint 7: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 4
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Saved to file 'bk2'.
+1392	      //replace discarded card with last card in hand
+1393	      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+1394	      //set last card to -1
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+1396	      //reduce number of cards in hand
+1397	      state->handCount[currentPlayer]--;
+1398	    }
+1399		
+1400	  return 0;
+1401	}
+Continuing.
+
+Breakpoint 4, main () at cardtest1.c:63
+63		printf("hand count = %d, expected = %d", 
+Continuing.
+
+Watchpoint 7 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 8 deleted because the program has left the block in
+which its expression is valid.
+0x00007ffff7743511 in __libc_start_main () from /usr/lib/libc.so.6
+Breakpoint 9 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 10 at 0x403985: file dominion.c, line 694.
+Breakpoint 11 at 0x40110d: file cardtest1.c, line 63.
+Breakpoint 12 at 0x4030a4: file dominion.c, line 528.
+bk2:5: Error in sourced command file:
+No symbol "testG" in current context.
+warning: bad breakpoint number at or near 'drawCard'
+Deleted breakpoints 6 12 
+Continuing.
+[Inferior 1 (process 9680) exited normally]
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+689	
+690	
+691	int play_smithy(struct gameState* state, int handPos)
+692	{
+693	    int i;
+694	    int currentPlayer = whoseTurn(state);
+695	
+696	    //+3 Cards
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+698	        drawCard(currentPlayer, state);
+Hardware watchpoint 13: i
+whoseTurn (state=0x7fffffff0ff0) at dominion.c:347
+347	  return state->whoseTurn;
+348	}
+play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+
+Hardware watchpoint 13: i
+
+Old value = 32767
+New value = 0
+0x000000000040399b in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i > 3; i++) { /* FIXME new bug */
+701	    discardCard(handPos, currentPlayer, state, 0);
+Continuing.
+
+Watchpoint 13 deleted because the program has left the block in
+which its expression is valid.
+0x0000000000405d3d in cardEffect (card=13, choice1=1, choice2=0, choice3=0, 
+    state=0x7fffffff0ff0, handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1317
+1317	        return play_smithy(state, handPos);
+Continuing.
+
+Breakpoint 4, main () at cardtest1.c:63
+63		printf("hand count = %d, expected = %d", 
+Program not restarted.
+Continuing.
+[Inferior 1 (process 11204) exited normally]
+Breakpoint 14 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 15 at 0x403985: file dominion.c, line 694.
+Breakpoint 16 at 0x40110d: file cardtest1.c, line 63.
+warning: bad breakpoint number at or near 'play_smithy'
+bk2:4: Error in sourced command file:
+No breakpoints specified.
+The program is not being run.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Type commands for breakpoint(s) 3, one per line.
+End with a line saying just "end".
+Saved to file 'bk2'.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+No symbol "testG" in current context.
+Continuing.
+
+Breakpoint 4, main () at cardtest1.c:63
+63		printf("hand count = %d, expected = %d", 
+Program not restarted.
+Continuing.
+[Inferior 1 (process 14833) exited normally]
+Already logging to gdb.txt.
+Breakpoint 17 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 18 at 0x403985: file dominion.c, line 694.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+No symbol "testG" in current context.
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+No symbol "testG" in current context.
+Breakpoint 1 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 2 at 0x403985: file dominion.c, line 694.
+The program is not being run.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+warning: Source file is more recent than executable.
+1313	  switch( card ) {
+No symbol "testG" in current context.
+Breakpoint 1 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 2 at 0x400efd: file cardtest1.c, line 6.
+Breakpoint 3 at 0x403985: file dominion.c, line 694.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+Error in re-setting breakpoint 2: No line -1 in file "/home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1.c".
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+warning: Source file is more recent than executable.
+1313	  switch( card ) {
+Breakpoint 1 at 0x405cb3: file dominion.c, line 1313.
+bk2:3: Error in sourced command file:
+No stack.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+warning: Source file is more recent than executable.
+1313	  switch( card ) {
+#1  0x00000000004010e0 in main () at cardtest1.c:61
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+56	    discarded = 1;
+57		xtraCoins = 0;
+58	
+59		// copy the game state to a test case
+60		memcpy(&testG, &G, sizeof(struct gameState));
+61		cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+62	
+63		printf("hand count = %d, expected = %d", 
+64	            testG.handCount[thisPlayer], 
+65	            G.handCount[thisPlayer] + newCards - discarded);
+Breakpoint 2 at 0x401093: file cardtest1.c, line 60.
+Saved to file 'bk3'.
+Breakpoint 1 at 0x401093: file cardtest1.c, line 60.
+Breakpoint 2 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 3 at 0x403985: file dominion.c, line 694.
+The program is not being run.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, main () at cardtest1.c:60
+60		memcpy(&testG, &G, sizeof(struct gameState));
+Hardware watchpoint 4: testG.deckCount[thisPlayer]
+Hardware watchpoint 5: testG.handCount[thisPlayer]
+Continuing.
+
+Hardware watchpoint 5: testG.handCount[thisPlayer]
+
+Old value = 0
+New value = 5
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Hardware watchpoint 4: testG.deckCount[thisPlayer]
+
+Old value = 0
+New value = 5
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Breakpoint 2, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+warning: Source file is more recent than executable.
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Continuing.
+
+Hardware watchpoint 5: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 4
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Watchpoint 4 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 5 deleted because the program has left the block in
+which its expression is valid.
+0x00007ffff7743511 in __libc_start_main () from /usr/lib/libc.so.6
+Continuing.
+[Inferior 1 (process 5411) exited normally]
+Undefined command: "".  Try "help".
+Breakpoint 1 at 0x401093: file cardtest1.c, line 60.
+Breakpoint 2 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 3 at 0x403985: file dominion.c, line 694.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, main () at cardtest1.c:60
+60		memcpy(&testG, &G, sizeof(struct gameState));
+Hardware watchpoint 4: testG.deckCount[thisPlayer]
+Watchpoint 5: testG.deck[thisPlayer]
+Hardware watchpoint 6: testG.handCount[thisPlayer]
+Watchpoint 7: testG.hand[thisPlayer]
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {0 <repeats 500 times>}
+New value = {13, 0 <repeats 499 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {13, 0 <repeats 499 times>}
+New value = {13, 4, 0 <repeats 498 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {13, 4, 0 <repeats 498 times>}
+New value = {13, 4, 1, 0 <repeats 497 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 0 <repeats 497 times>}
+New value = {13, 4, 1, 4, 0 <repeats 496 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 0 <repeats 496 times>}
+New value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Hardware watchpoint 6: testG.handCount[thisPlayer]
+
+Old value = 0
+New value = 5
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {0 <repeats 500 times>}
+New value = {1, 0 <repeats 499 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 0 <repeats 499 times>}
+New value = {1, 1, 0 <repeats 498 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 0 <repeats 498 times>}
+New value = {1, 1, 4, 0 <repeats 497 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 0 <repeats 497 times>}
+New value = {1, 1, 4, 4, 0 <repeats 496 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 4, 0 <repeats 496 times>}
+New value = {1, 1, 4, 4, 4, 0 <repeats 495 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 4, 4, 0 <repeats 495 times>}
+New value = {1, 1, 4, 4, 4, 4, 0 <repeats 494 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 4, 4, 4, 0 <repeats 494 times>}
+New value = {1, 1, 4, 4, 4, 4, 4, 0 <repeats 493 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 4, 4, 4, 4, 0 <repeats 493 times>}
+New value = {1, 1, 4, 4, 4, 4, 4, 1, 0 <repeats 492 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 4, 4, 4, 4, 1, 0 <repeats 492 times>}
+New value = {1, 1, 4, 4, 4, 4, 4, 1, 4, 0 <repeats 491 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.deck[thisPlayer]
+
+Old value = {1, 1, 4, 4, 4, 4, 4, 1, 4, 0 <repeats 491 times>}
+New value = {1, 1, 4, 4, 4, 4, 4, 1, 4, 4, 0 <repeats 490 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Hardware watchpoint 4: testG.deckCount[thisPlayer]
+
+Old value = 0
+New value = 5
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Breakpoint 2, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+warning: Source file is more recent than executable.
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {-1, 4, 1, 4, 4, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1380
+1380	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {-1, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {4, 4, 1, 4, 4, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1395
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+Continuing.
+
+Watchpoint 7: testG.hand[thisPlayer]
+
+Old value = {4, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {4, 4, 1, 4, -1, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Hardware watchpoint 6: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 4
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Breakpoint 1 at 0x401093: file cardtest1.c, line 60.
+Breakpoint 2 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 3 at 0x403985: file dominion.c, line 694.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, main () at cardtest1.c:60
+60		memcpy(&testG, &G, sizeof(struct gameState));
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+Watchpoint 5: testG.hand[thisPlayer]
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {0 <repeats 500 times>}
+New value = {13, 0 <repeats 499 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 0 <repeats 499 times>}
+New value = {13, 4, 0 <repeats 498 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 0 <repeats 498 times>}
+New value = {13, 4, 1, 0 <repeats 497 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 0 <repeats 497 times>}
+New value = {13, 4, 1, 4, 0 <repeats 496 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 0 <repeats 496 times>}
+New value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 0
+New value = 5
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Breakpoint 2, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+warning: Source file is more recent than executable.
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {-1, 4, 1, 4, 4, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1380
+1380	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {-1, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {4, 4, 1, 4, 4, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1395
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {4, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {4, 4, 1, 4, -1, 0 <repeats 495 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 4
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Watchpoint 4 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 5 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 5 deleted because the program has left the block in
+which its expression is valid.
+0x00007ffff7743511 in __libc_start_main () from /usr/lib/libc.so.6
+Breakpoint 1 at 0x401093: file cardtest1.c, line 60.
+Breakpoint 2 at 0x405cb3: file dominion.c, line 1313.
+Breakpoint 3 at 0x403985: file dominion.c, line 694.
+The program is not being run.
+Starting program: /home/chewie/Documents/cs362/CS362-004-SP17/projects/linsh/dominion/cardtest1 
+
+Breakpoint 1, main () at cardtest1.c:60
+60		memcpy(&testG, &G, sizeof(struct gameState));
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+Watchpoint 5: testG.hand[thisPlayer]
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {0 <repeats 500 times>}
+New value = {13, 0 <repeats 499 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 0 <repeats 499 times>}
+New value = {13, 4, 0 <repeats 498 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 0 <repeats 498 times>}
+New value = {13, 4, 1, 0 <repeats 497 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 0 <repeats 497 times>}
+New value = {13, 4, 1, 4, 0 <repeats 496 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 0 <repeats 496 times>}
+New value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 0
+New value = 5
+0x00007ffff785249f in __memmove_avx_unaligned_erms () from /usr/lib/libc.so.6
+Continuing.
+
+Breakpoint 2, cardEffect (card=13, choice1=1, choice2=0, choice3=0, state=0x7fffffff0ff0, 
+    handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1313
+1313	  switch( card ) {
+Continuing.
+
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Hardware watchpoint 6: i
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 32767
+New value = 0
+0x000000000040399b in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {13, 4, 1, 4, 4, 4, 0 <repeats 494 times>}
+drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:576
+576	    state->deckCount[player]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 6
+0x00000000004033c2 in drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:577
+577	    state->handCount[player]++;//Increment hand count
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 0
+New value = 1
+0x00000000004039c4 in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 4, 0 <repeats 494 times>}
+New value = {13, 4, 1, 4, 4, 4, 4, 0 <repeats 493 times>}
+drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:576
+576	    state->deckCount[player]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 6
+New value = 7
+0x00000000004033c2 in drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:577
+577	    state->handCount[player]++;//Increment hand count
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 1
+New value = 2
+0x00000000004039c4 in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 4, 4, 0 <repeats 493 times>}
+New value = {13, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:576
+576	    state->deckCount[player]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 7
+New value = 8
+0x00000000004033c2 in drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:577
+577	    state->handCount[player]++;//Increment hand count
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 2
+New value = 3
+0x00000000004039c4 in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+New value = {-1, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1380
+1380	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {-1, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+New value = {4, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1395
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {4, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+New value = {4, 4, 1, 4, 4, 4, 4, -1, 0 <repeats 492 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 8
+New value = 7
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Watchpoint 6 deleted because the program has left the block in
+which its expression is valid.
+0x0000000000405d3d in cardEffect (card=13, choice1=1, choice2=0, choice3=0, 
+    state=0x7fffffff0ff0, handPos=0, bonus=0x7fffffffdd6c) at dominion.c:1317
+1317	        return play_smithy(state, handPos);
+Continuing.
+
+Watchpoint 4 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 5 deleted because the program has left the block in
+which its expression is valid.
+
+Watchpoint 5 deleted because the program has left the block in
+which its expression is valid.
+0x00007ffff7743511 in __libc_start_main () from /usr/lib/libc.so.6

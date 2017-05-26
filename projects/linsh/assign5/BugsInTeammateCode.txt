@@ -1,0 +1,78 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    smithy card only draws 2 cards instead of 3. 
+
+Class: Serious bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:           25 May 2017
+Reported By:   linsh
+Email:      linsh@oregonstate.edu
+
+
+Product: Dominion                        Version: OSU
+Platform: All                       Version: n/a
+Browser: n/a                        Version:n/a
+URL:       n/a
+
+Is it reproducible: Yes / Occasionally / One Time / No
+Yes.
+
+
+Description
+===========
+In my testing, I played the smithy to draw 3 cards but only 2 new cards shows up
+in hand and the deck count is incorrect as well.
+
+
+
+Steps to Produce/Reproduce
+--------------------------
+
+These are the steps for setting up the test:
+
+    /* set hand */
+    handpos = 0;
+    G.hand[thisPlayer][handpos] = smithy;
+    newCards = 3;
+    discarded = 1;
+
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+    cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+
+When compare the new state against the expected state. The test shows 1 card
+missing. 
+
+Expected Results
+----------------
+hand count = 6, expected = 7... Error
+deck count = 3, expected = 2... Error
+
+
+
+
+Actual Results
+--------------
+hand count = 6, expected = 7... Error
+deck count = 3, expected = 2... Error
+
+
+
+Workarounds
+-----------
+None
+
+
+
+Attachments
+-----------
+unittestresults.out
+
+
+
+Other Information
+-----------------
+
+

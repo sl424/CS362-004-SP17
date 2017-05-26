@@ -1,0 +1,4 @@
+set logging on
+set print array on
+break cardEffect
+watch testG.handCount[thisPlayer]

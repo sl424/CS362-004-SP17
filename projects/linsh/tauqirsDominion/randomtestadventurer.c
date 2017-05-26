@@ -10,10 +10,14 @@
 #include <assert.h>
 #include "rngs.h"
 #include <stdlib.h>
+#include<time.h>
+
+#define REPS 10
 
 #define TESTCARD "adventurer"
 
 int main() {
+    srand(time(NULL));
     int newCards = 0;
     int discarded = 0;
     int xtraCoins = 0;
@@ -38,41 +42,59 @@ int main() {
             error_count++;
         }
     }
+    int randomTreasureCard(void){
+        int min =  copper;
+        int max = gold;
+        int r = (rand() % (max + 1 - min)) + min;
+        return r;
+    }
+
+    int randomRange(int min, int max){
+        int r = (rand() % (max + 1 - min)) + min;
+        return r;
+    }
+    int nTreasures;
 
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 
 	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 
-	choice1 = 1;
+	//choice1 = 1;
+    //int treasure_cards[4] = {copper, silver, gold, copper};
+    //char* treasure_names[4] = {"copper", "silver", "gold", "copper"};
 
-    int treasure_cards[4] = {copper, silver, gold, copper};
-    char* treasure_names[4] = {"copper", "silver", "gold", "copper"};
-
-    for ( i = 0; i < 4; i++){
+    //for ( i = 0; i < 4; i++){
+    for ( i = 0; i < REPS; i++){
         /* set hand  and deck*/
-	    printf("\n*** find %s cards\n", treasure_names[i]);
-        handpos = 0;
-        G.hand[thisPlayer][handpos] = adventurer;
+	    printf("\n*** find treasure cards\n");
+        for (handpos = 0; handpos < G.handCount[thisPlayer]; handpos++){
+            if (handpos == 0) 
+                G.hand[thisPlayer][handpos] = adventurer;
+            else
+                G.hand[thisPlayer][handpos] = curse;
+        }
 
+        /*
         for (j = 0; j < G.deckCount[thisPlayer]; j++){
             G.deck[thisPlayer][j] = treasure_cards[i];
         }
+        */
 
-        // If you run out of cards after shuffling and still only have 
-        // one Treasure, you get just that one Treasure.
-        //only single treasure
-        if (i == 3){
-            for (j = 0; j < G.deckCount[thisPlayer]; j++){
+        /* create random n treasure card of any kind in deck*/
+        nTreasures = randomRange(0, G.deckCount[thisPlayer]);
+        for (j = 0; j < G.deckCount[thisPlayer]; j++){
+            if (j < nTreasures)
+                G.deck[thisPlayer][j] = randomTreasureCard();
+            else
                 G.deck[thisPlayer][j] = curse;
-            }
-                G.deck[thisPlayer][G.deckCount[thisPlayer]-1] = copper;
         }
+        shuffle(thisPlayer, &G);
 
-        newCards = 2;
+        newCards = nTreasures < 2 ? nTreasures : 2;
         discarded = 0;
         xtraCoins = 0;
-        if (i==3){discarded=G.deckCount[thisPlayer]-1; newCards=1;}
+        //if (i==3){discarded=G.deckCount[thisPlayer]-1; newCards=1;}
 
         // copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
@@ -87,14 +109,20 @@ int main() {
         int card1 = testG.hand[thisPlayer][testG.handCount[thisPlayer]-1];
         int card2 = testG.hand[thisPlayer][testG.handCount[thisPlayer]-2];
 
+        /*
         printf("1st treasure card = %d, expected = %d ", 
                 card1, treasure_cards[i]);
         perror(card1 == treasure_cards[i]);
-
         if(i != 3){
         printf("2nd treasure card = %d, expected = %d ", 
                 card2, treasure_cards[i]);
         perror(card2 == treasure_cards[i]);
+        }
+        */
+        for (m = 0; m < newCards; m++){
+            printf("treasure card %d = %d, expected = %d,%d,%d ", m,
+                    card1, copper, silver, gold);
+            perror(card1 == copper || card1 == silver || card1 == gold);
         }
 
         printf("deck count = %d, expected = %d", 

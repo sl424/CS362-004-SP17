@@ -1,0 +1,120 @@
+Breakpoint 3, play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:694
+694	    int currentPlayer = whoseTurn(state);
+Hardware watchpoint 6: i
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 32767
+New value = 0
+0x000000000040399b in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 0 <repeats 495 times>}
+New value = {13, 4, 1, 4, 4, 4, 0 <repeats 494 times>}
+drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:576
+576	    state->deckCount[player]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 5
+New value = 6
+0x00000000004033c2 in drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:577
+577	    state->handCount[player]++;//Increment hand count
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 0
+New value = 1
+0x00000000004039c4 in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 4, 0 <repeats 494 times>}
+New value = {13, 4, 1, 4, 4, 4, 4, 0 <repeats 493 times>}
+drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:576
+576	    state->deckCount[player]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 6
+New value = 7
+0x00000000004033c2 in drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:577
+577	    state->handCount[player]++;//Increment hand count
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 1
+New value = 2
+0x00000000004039c4 in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 4, 4, 0 <repeats 493 times>}
+New value = {13, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:576
+576	    state->deckCount[player]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 7
+New value = 8
+0x00000000004033c2 in drawCard (player=0, state=0x7fffffff0ff0) at dominion.c:577
+577	    state->handCount[player]++;//Increment hand count
+Continuing.
+
+Hardware watchpoint 6: i
+
+Old value = 2
+New value = 3
+0x00000000004039c4 in play_smithy (state=0x7fffffff0ff0, handPos=0) at dominion.c:697
+697	    for (i = 0; i < 3; i++) { /* FIXME new bug */
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {13, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+New value = {-1, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1380
+1380	  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {-1, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+New value = {4, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1395
+1395	      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+Continuing.
+
+Watchpoint 5: testG.hand[thisPlayer]
+
+Old value = {4, 4, 1, 4, 4, 4, 4, 4, 0 <repeats 492 times>}
+New value = {4, 4, 1, 4, 4, 4, 4, -1, 0 <repeats 492 times>}
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, trashFlag=0)
+    at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.
+
+Hardware watchpoint 4: testG.handCount[thisPlayer]
+
+Old value = 8
+New value = 7
+0x0000000000406383 in discardCard (handPos=0, currentPlayer=0, state=0x7fffffff0ff0, 
+    trashFlag=0) at dominion.c:1397
+1397	      state->handCount[currentPlayer]--;
+Continuing.

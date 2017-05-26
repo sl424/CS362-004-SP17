@@ -1,0 +1,92 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    mine card cannot trade copper for copper
+
+Class: Annoyance
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:           25 May 2017
+Reported By:   linsh
+Email:      linsh@oregonstate.edu
+
+
+Product: Dominion                        Version: tauqirsDominion
+Platform: All                       Version: n/a
+Browser: n/a                        Version:n/a
+URL:       n/a
+
+Is it reproducible: Yes / Occasionally / One Time / No
+Yes.
+
+
+Description
+===========
+I set up the unit test to trade copper, silver, and gold. The
+card failed when trading copper for copper. It works if it's copper to silver
+and silver to gold. This is a minor annoyance since most poeple use it to get
+higher value treasure card anyway. 
+
+
+Steps to Produce/Reproduce
+--------------------------
+We set the hand so that we can play the mine card with the choice of treasure
+card in hand position 0 and 1. 
+
+        /* set hand  and deck*/
+        handpos = 0;
+        G.hand[thisPlayer][handpos] = mine;
+        choice1 = 1;
+        G.hand[thisPlayer][choice1] = treasure_cards[i];
+        choice2 = treasure_cards[j];
+
+        newCards = 1;
+        trashed = 1;
+        played = 1;
+        xtraCoins = 0;
+
+        // copy the game state to a test case
+        memcpy(&testG, &G, sizeof(struct gameState));
+        rv = cardEffect(mine, choice1, choice2, choice3, &testG, handpos, &bonus);
+
+When we compare the result, trading for treasure card of the same or less value
+will return with error. 
+
+Expected Results/  Actual Results
+----------------
+*** trade treasure card 4 for 4
+return status = -1, expected = 0... Error
+hand count = 5, expected = 4... Error
+new card = 11, expected = 4 ... Error
+supply count = 46, expected = 45... Error
+mine discarded: card = 11, NOT = 11... Error
+
+*** trade treasure card 4 for 5
+return status = 0, expected = 0... OK
+hand count = 4, expected = 4... OK
+new card = 5, expected = 5 ... OK
+supply count = 39, expected = 39... OK
+mine discarded: card = 5, NOT = 11... OK
+
+** trade treasure card 4 for 6
+return status = 0, expected = 0... OK
+hand count = 4, expected = 4... OK
+new card = 6, expected = 6 ... OK
+supply count = 29, expected = 29... OK
+mine discarded: card = 6, NOT = 11... OK
+
+Workarounds
+-----------
+only trade for higher value treasure cards
+
+
+Attachments
+-----------
+unittestresults.out
+
+
+
+Other Information
+-----------------
+
+

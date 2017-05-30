@@ -1,3 +1,4 @@
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -17,64 +18,154 @@
 
 
 import junit.framework.TestCase;
-
-
-
-
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Performs Validation Test for url validations.
  *
  * @version $Revision: 1128446 $ $Date: 2011-05-27 13:29:27 -0700 (Fri, 27 May 2011) $
  */
+
 public class UrlValidatorTest extends TestCase {
 
-   private boolean printStatus = false;
-   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
+	private boolean printStatus = false;
+	private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
-   public UrlValidatorTest(String testName) {
-      super(testName);
-   }
+	public UrlValidatorTest(String testName) {
+		super(testName);
+	}
 
-   
-   
-   public void testManualTest()
-   {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
-	   
-   }
-   
-   
-   public void testYourFirstPartition()
-   {
-	   
-   }
-   
-   public void testYourSecondPartition(){
-	   
-   }
-   
-   
-   public void testIsValid()
-   {
-	   for(int i = 0;i<10000;i++)
-	   {
-		   
-	   }
-   }
-   
-   public void testAnyOtherUnitTest()
-   {
-	   
-   }
-   /**
-    * Create set of tests by taking the testUrlXXX arrays and
-    * running through all possible permutations of their combinations.
-    *
-    * @param testObjects Used to create a url.
-    */
-   
+	public void testManualTest()
+	{
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		System.out.println(urlVal.isValid("http://www.amazon.com"));
+	}
+
+
+	public void testYourFirstPartition()
+	{
+
+	}
+
+	public void testYourSecondPartition(){
+
+	}
+
+	public void testIsValid()
+	{
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		int partnum = 5; // # of url parts we want to test
+		int loopnum = 10; //10000
+
+		for(int i = 0; i<loopnum; i++) { 
+			StringBuffer testBuffer = new StringBuffer();  
+			boolean expected = true;
+			int[] randomPick = randomIndex();
+
+			ResultPair component;
+			// pick element for each url compoenents
+			for( int j = 0; j < partnum; j++){
+				component = (ResultPair) testUrlParts[j][randomPick[j]];
+				testBuffer.append(component.item);                               
+				expected &= component.valid;  
+			}
+			String url = testBuffer.toString();                                   
+			boolean result = urlVal.isValid(url);  
+			if(result!=expected){                                                    
+				System.out.println(url);                                          
+			}
+			assertEquals(url, expected, result);     
+		}
+	}
+
+
+	public void testAnyOtherUnitTest()
+	{
+
+	}
+
+	public int[] randomIndex() {
+		int min = 0;
+		int[] randomIndex = new int[5];
+		for (int i = 0; i < 5; i++){
+			randomIndex[i] = (ThreadLocalRandom.current().nextInt(testUrlParts[i].length));
+		}
+		if ( printIndex == true){
+			System.out.print("Testing index: {");
+			for (int j = 0; j < 5; j++){
+				System.out.print(randomIndex[j]+",");
+			}
+			System.out.print("}\n");
+		}
+		return randomIndex;
+	}
+
+
+	/**
+	 * Create set of tests by taking the testUrlXXX arrays and
+	 * running through all possible permutations of their combinations.
+	 *
+	 * @param testObjects Used to create a url.
+	 */
+	ResultPair[] testUrlScheme = {new ResultPair("http://", true),              
+		new ResultPair("ftp://", true),                                
+		new ResultPair("h3t://", true),                 
+		new ResultPair("3ht://", false),                
+		new ResultPair("http:/", false),                
+		new ResultPair("http:", false),                 
+		new ResultPair("http/", false),                 
+		new ResultPair("://", false),                   
+		new ResultPair("", true)};  
+
+	ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),    
+		new ResultPair("go.com", true),              
+		new ResultPair("go.au", true),               
+		new ResultPair("0.0.0.0", true),             
+		new ResultPair("255.255.255.255", true),     
+		new ResultPair("256.256.256.256", false),    
+		new ResultPair("255.com", true),             
+		new ResultPair("1.2.3.4.5", false),          
+		new ResultPair("1.2.3.4.", false),           
+		new ResultPair("1.2.3", false),              
+		new ResultPair(".1.2.3.4", false),           
+		new ResultPair("go.a", false),               
+		new ResultPair("go.a1a", false),             
+		new ResultPair("go.cc", true),               
+		new ResultPair("go.1aa", false),             
+		new ResultPair("aaa.", false),               
+		new ResultPair(".aaa", false),               
+		new ResultPair("aaa", false),                
+		new ResultPair("", false)      };
+
+
+	ResultPair[] testPath = {new ResultPair("/test1", true),                    
+		new ResultPair("/t123", true),                       
+		new ResultPair("/$23", true),                        
+		new ResultPair("/..", false),                        
+		new ResultPair("/../", false),                       
+		new ResultPair("/test1/", true),                     
+		new ResultPair("", true),                            
+		new ResultPair("/test1/file", true),                 
+		new ResultPair("/..//file", false),                                 
+		new ResultPair("/test1//file", false)                
+	};  
+
+	ResultPair[] testUrlQuery = {new ResultPair("?action=view",true),                         
+		new ResultPair("?action=edit&mode=up", true),    
+		new ResultPair("", true)                         
+	}; 
+
+	ResultPair[] testUrlPort = {new ResultPair(":80", true),                    
+		new ResultPair(":65535", true),                   
+		new ResultPair(":0", true),                       
+		new ResultPair("", true),                         
+		new ResultPair(":-1", false),                     
+		new ResultPair(":65636", true),                   
+		new ResultPair(":65a", false)                     
+	};                                           
+
+	Object[][] testUrlParts = {testUrlScheme, testUrlAuthority, testUrlPort,
+		testPath,testUrlQuery}; 
+
 
 }

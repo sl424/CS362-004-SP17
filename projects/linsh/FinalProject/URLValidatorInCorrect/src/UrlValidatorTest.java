@@ -127,7 +127,7 @@ public class UrlValidatorTest extends TestCase {
 	ResultPair[] testPathNew = {
 		new ResultPair("/path/to/somewhere", true),
 		new ResultPair("/helloworld", true),
-		new ResultPair("/hello#world", true)
+		new ResultPair("/hello#world", true),
 		new ResultPair("", true)
 	};
 
@@ -137,7 +137,7 @@ public class UrlValidatorTest extends TestCase {
 	};
 
 	ResultPair[] testUrlPortNew = {
-		new ResultPair(":12345", true)
+		new ResultPair(":12345", true),
 		new ResultPair("", true)
 	};
 

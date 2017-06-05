@@ -44,11 +44,86 @@ public class UrlValidatorTest extends TestCase {
 
 	public void testYourFirstPartition()
 	{
-
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		boolean expected, result;
+		String url;
+		
+		// Test the scheme
+		expected = true;
+		url = "ftp://go.cc/t123";
+		//System.out.println("Testing the URL scheme:");
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+		
+		url = "http:/go.cc/t123";
+		expected = false;
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+		
 	}
 
 	public void testYourSecondPartition(){
-
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		boolean expected, result;
+		String url;
+		
+		// Test the authority
+		expected = true;
+		url = "i3://go.cc/helloworld";
+		//System.out.println("Testing the URL authority:");
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+		
+		url = "i3://256.256.256.256/helloworld";
+		expected = false;
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result); // assertion fails
+	}
+	
+	public void testYourThirdPartition() {
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		boolean expected, result;
+		String url;
+		
+		//Test the path
+		expected = true;
+		url = "ieee://xyz.xyz/path/to/somewhere";
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+		
+		url = "ieee://xyz.xyz/..";
+		expected = false;
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+	}
+	
+	public void testYourFourthPartition() {
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		boolean expected, result;
+		String url;
+		
+		//Test the query
+		expected = true;
+		url = "http://google.com?key=value";
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+	}
+	
+	public void testYourFifthPartition() {
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		boolean expected, result;
+		String url;
+		
+		//Test the port
+		expected = true;
+		url = "http://google.com:65636";
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
+		
+		url = "http://google.com:-1";
+		expected = false;
+		result = urlVal.isValid(url);
+		assertEquals(url, expected, result);
 	}
 
 	public void testIsValid()
@@ -111,8 +186,11 @@ public class UrlValidatorTest extends TestCase {
 	 * @param testObjects Used to create a url.
 	 */
 	ResultPair[] testUrlSchemeNew = {
+		new ResultPair("ftp://", true),
+		new ResultPair("h3t://", true),
 		new ResultPair("http://",true),
 		new ResultPair("ieee://",true),
+		new ResultPair("http:/", false),
 		new ResultPair("i3://",true)
 	};
 
@@ -121,13 +199,17 @@ public class UrlValidatorTest extends TestCase {
 		new ResultPair("google.com", true),
 		new ResultPair("172.217.11.164", true),
 		new ResultPair("2607:f8b0:4007:80d::2004", true),
+		new ResultPair("256.256.256.256", false),
+		new ResultPair("go.cc", true),
 		new ResultPair("xyz.xyz", true)
 	};
 
 	ResultPair[] testPathNew = {
+		new ResultPair("/test1", true),
 		new ResultPair("/path/to/somewhere", true),
 		new ResultPair("/helloworld", true),
 		new ResultPair("/hello#world", true),
+		new ResultPair("/..", false),
 		new ResultPair("", true)
 	};
 
@@ -138,6 +220,7 @@ public class UrlValidatorTest extends TestCase {
 
 	ResultPair[] testUrlPortNew = {
 		new ResultPair(":12345", true),
+		new ResultPair(":65636", true),
 		new ResultPair("", true)
 	};
 

@@ -28,7 +28,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class UrlValidatorTest extends TestCase {
 
-	private boolean printStatus = false;
+	private boolean printStatus = true;
 	private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
 	public UrlValidatorTest(String testName) {
@@ -68,6 +68,9 @@ public class UrlValidatorTest extends TestCase {
 				component = (ResultPair) testUrlParts[j][randomPick[j]];
 				testBuffer.append(component.item);                               
 				expected &= component.valid;  
+				if (printStatus) {
+					System.out.println(component.item + " -> " + component.valid);
+				}
 			}
 			String url = testBuffer.toString();                                   
 			boolean result = urlVal.isValid(url);  
@@ -107,6 +110,46 @@ public class UrlValidatorTest extends TestCase {
 	 *
 	 * @param testObjects Used to create a url.
 	 */
+	ResultPair[] testUrlSchemeNew = {
+		new ResultPair("http://",true),
+		new ResultPair("ieee://",true),
+		new ResultPair("i3://",true)
+	};
+
+	ResultPair[] testUrlAuthorityNew = {
+		new ResultPair("1.2.3.4", true),
+		new ResultPair("google.com", true),
+		new ResultPair("172.217.11.164", true),
+		new ResultPair("2607:f8b0:4007:80d::2004", true),
+		new ResultPair("xyz.xyz", true)
+	};
+
+	ResultPair[] testPathNew = {
+		new ResultPair("/path/to/somewhere", true),
+		new ResultPair("/helloworld", true),
+		new ResultPair("/hello#world", true)
+		new ResultPair("", true)
+	};
+
+	ResultPair[] testUrlQueryNew = {
+		new ResultPair("?key=value", true),
+		new ResultPair("", true)
+	};
+
+	ResultPair[] testUrlPortNew = {
+		new ResultPair(":12345", true)
+		new ResultPair("", true)
+	};
+
+	/*
+	Object[][] testUrlParts = {testUrlScheme, testUrlAuthority, testUrlPort,
+		testPath,testUrlQuery}; 
+		*/
+
+	Object[][] testUrlParts = {testUrlSchemeNew, testUrlAuthorityNew, testUrlPortNew,
+		testPathNew,testUrlQueryNew}; 
+}
+/*
 	ResultPair[] testUrlScheme = {new ResultPair("http://", true),              
 		new ResultPair("ftp://", true),                                
 		new ResultPair("h3t://", true),                 
@@ -116,6 +159,21 @@ public class UrlValidatorTest extends TestCase {
 		new ResultPair("http/", false),                 
 		new ResultPair("://", false),                   
 		new ResultPair("", true)};  
+
+
+	ResultPair[] testUrlPort = {new ResultPair(":80", true),                    
+		new ResultPair(":65535", true),                   
+		new ResultPair(":0", true),                       
+		new ResultPair("", true),                         
+		new ResultPair(":-1", false),                     
+		new ResultPair(":65636", true),                   
+		new ResultPair(":65a", false)                     
+	};                                           
+
+	ResultPair[] testUrlQuery = {new ResultPair("?action=view",true),                         
+		new ResultPair("?action=edit&mode=up", true),    
+		new ResultPair("", true)                         
+	}; 
 
 	ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),    
 		new ResultPair("go.com", true),              
@@ -137,6 +195,25 @@ public class UrlValidatorTest extends TestCase {
 		new ResultPair("aaa", false),                
 		new ResultPair("", false)      };
 
+	ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),    
+		new ResultPair("go.com", true),              
+		new ResultPair("go.au", true),               
+		new ResultPair("0.0.0.0", true),             
+		new ResultPair("255.255.255.255", true),     
+		new ResultPair("256.256.256.256", false),    
+		new ResultPair("255.com", true),             
+		new ResultPair("1.2.3.4.5", false),          
+		new ResultPair("1.2.3.4.", false),           
+		new ResultPair("1.2.3", false),              
+		new ResultPair(".1.2.3.4", false),           
+		new ResultPair("go.a", false),               
+		new ResultPair("go.a1a", false),             
+		new ResultPair("go.cc", true),               
+		new ResultPair("go.1aa", false),             
+		new ResultPair("aaa.", false),               
+		new ResultPair(".aaa", false),               
+		new ResultPair("aaa", false),                
+		new ResultPair("", false)      };
 
 	ResultPair[] testPath = {new ResultPair("/test1", true),                    
 		new ResultPair("/t123", true),                       
@@ -149,23 +226,4 @@ public class UrlValidatorTest extends TestCase {
 		new ResultPair("/..//file", false),                                 
 		new ResultPair("/test1//file", false)                
 	};  
-
-	ResultPair[] testUrlQuery = {new ResultPair("?action=view",true),                         
-		new ResultPair("?action=edit&mode=up", true),    
-		new ResultPair("", true)                         
-	}; 
-
-	ResultPair[] testUrlPort = {new ResultPair(":80", true),                    
-		new ResultPair(":65535", true),                   
-		new ResultPair(":0", true),                       
-		new ResultPair("", true),                         
-		new ResultPair(":-1", false),                     
-		new ResultPair(":65636", true),                   
-		new ResultPair(":65a", false)                     
-	};                                           
-
-	Object[][] testUrlParts = {testUrlScheme, testUrlAuthority, testUrlPort,
-		testPath,testUrlQuery}; 
-
-
-}
+*/

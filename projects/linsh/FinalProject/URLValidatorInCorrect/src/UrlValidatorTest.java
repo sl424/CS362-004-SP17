@@ -195,13 +195,16 @@ public class UrlValidatorTest extends TestCase {
 	};
 
 	ResultPair[] testUrlAuthorityNew = {
-		new ResultPair("1.2.3.4", true),
 		new ResultPair("google.com", true),
+<<<<<<< Updated upstream
 		new ResultPair("172.217.11.164", true),
 		new ResultPair("2607:f8b0:4007:80d::2004", true),
 		new ResultPair("256.256.256.256", false),
 		new ResultPair("go.cc", true),
 		new ResultPair("xyz.xyz", true)
+=======
+		new ResultPair("172.217.11.164", true)
+>>>>>>> Stashed changes
 	};
 
 	ResultPair[] testPathNew = {

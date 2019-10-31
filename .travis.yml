@@ -13,7 +13,6 @@ after_success:
         - echo "success"
 branches:
   only:
-          travis-branch
           master
 notifications:
   email: false

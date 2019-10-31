@@ -1,0 +1,22 @@
+language: cpp
+compiler: 
+- gcc
+os: 
+- linux
+before_install:
+        - echo "no install"
+before_script:
+        - cd projects/linsh/dominion
+script:
+        - make runtests
+after_success:
+        - echo "success"
+branches:
+  only:
+          travis-branch
+notifications:
+  email: false
+
+env:
+  global:
+          - LANG="en_US.UTF-8"
